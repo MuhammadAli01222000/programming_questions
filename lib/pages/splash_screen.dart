@@ -28,88 +28,89 @@ class _SplashPageState extends State<SplashPage> {
     return Scaffold(
       backgroundColor: AppColors.backroundColor,
       appBar: _appBar(size),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding:AppDimens.p8,
-            child: ListTile(
-              leading: Text(
-                AppLocalizations.of(context)!.selectLanguage,
-                style: AppTextStyle.smallText
-              ),
-              trailing: Consumer<LanguageController>(
-                builder: (context, langController, _) {
-                  return IconButton(
-                    padding: AppDimens.p25,
-                    icon:
-                        langController.currentLocale.languageCode == "uz"
-                            ? AppIcons.uzb
-                            : langController.currentLocale.languageCode == "en"
-                            ? AppIcons.ingliz
-                            : AppIcons.rus,
-                    onPressed: () {
-                      l10n= langController.currentLocale.languageCode;
+      body:SingleChildScrollView(
+        controller: scrollController,
+        scrollDirection: Axis.vertical,
+        child:  Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding:AppDimens.p8,
+              child: ListTile(
+                trailing: Consumer<LanguageController>(
+                  builder: (context, langController, _) {
+                    return IconButton(
+                      padding: AppDimens.p25,
+                      icon:
+                      langController.currentLocale.languageCode == "uz"
+                          ? AppIcons.uzb
+                          : langController.currentLocale.languageCode == "en"
+                          ? AppIcons.ingliz
+                          : AppIcons.rus,
+                      onPressed: () {
+                        l10n= langController.currentLocale.languageCode;
 
-                      showModalBottomSheet(
-                        context: context,
-                        builder: (context) => _buildLanguageModal(context),
-                      );
-                    },
-                  );
-                },
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) => _buildLanguageModal(context),
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            width: size - 3,
-            height: AppDimens.d400,
-            child: Padding(
-              padding: AppDimens.p16,
-              child: GridView.builder(
-                itemCount: listImageUrl.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: AppDimens.d20,
-                  mainAxisSpacing: AppDimens.d20,
-                ),
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    width: AppDimens.d150,
-                    height: AppDimens.d50,
-                    decoration: BoxDecoration(
-                      color: AppColors.colorList[index],
-                      borderRadius: AppDimens.c20,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppDimens.d16,
+            SizedBox(
+              width: size - 3,
+              height:440,
+              child: Padding(
+                padding: AppDimens.p16,
+                child: GridView.builder(
+                  itemCount: listImageUrl.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: AppDimens.d20,
+                    mainAxisSpacing: AppDimens.d20,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      width: AppDimens.d150,
+                      height: AppDimens.d50,
+                      decoration: BoxDecoration(
+                        color: AppColors.colorList[index],
+                        borderRadius: AppDimens.c20,
                       ),
-                      child: GestureDetector(
-                        onTap: () {
-                          selectedIndex = index;
-                          _currentImageIndex = index;
-                          context.pushNamed(
-                            AppRouteName.home,
-                            pathParameters: {
-                              "index": "$selectedIndex",
-                            },
-                          );
-                        },
-                        child: Image.asset(
-                          listImageUrl[index],
-                          height: AppDimens.d50,
-                          fit: BoxFit.contain,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppDimens.d16,
+                        ),
+                        child: GestureDetector(
+                          onTap: () {
+                            selectedIndex = index;
+                            _currentImageIndex = index;
+                            context.pushNamed(
+                              AppRouteName.home,
+                              pathParameters: {
+                                "index": "$selectedIndex",
+                              },
+                            );
+                          },
+                          child: Image.asset(
+                            listImageUrl[index],
+                            height: AppDimens.d50,
+                            fit: BoxFit.contain,
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             ),
-          ),
-        ],
-      ),
+            const     SizedBox(height: 10,),
+          ],
+        ),
+      )
     );
   }
 

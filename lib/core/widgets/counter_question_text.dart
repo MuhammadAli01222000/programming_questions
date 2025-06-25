@@ -17,8 +17,8 @@ class CountQuestionText extends StatelessWidget {
         textAlign: TextAlign.left,
         text: TextSpan(
           children: [
-            const TextSpan(
-              text: "${AppStrings.quetion}",
+             TextSpan(
+              text: "${AppLocalizations.of(context)?.result}",
               style: AppTextStyle.bigText,
             ),
             TextSpan(text: " $index", style: AppTextStyle.bigNumber),

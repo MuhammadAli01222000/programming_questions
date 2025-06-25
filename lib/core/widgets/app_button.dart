@@ -10,7 +10,7 @@ class ResultPageButton extends StatelessWidget {
       height: 60,
       child: ElevatedButton(
         onPressed: () {
-          context.pushNamed( AppRouteName.result);
+          context.goNamed( AppRouteName.result);
         },
         style: ButtonStyle(
           backgroundColor: const WidgetStatePropertyAll(AppColors.green),
@@ -20,8 +20,8 @@ class ResultPageButton extends StatelessWidget {
             ),
           ),
         ),
-        child: const Center(
-          child: Text('Result page', style: AppTextStyle.languageText),
+        child:  Center(
+          child: Text('${AppLocalizations.of(context)?.result}', style: AppTextStyle.languageText),
         ),
       ),
     );

@@ -1,9 +1,9 @@
 import 'package:programming_questions/core/theme/theme.dart';
 import 'package:programming_questions/core/widgets/app_bar.dart';
+
 bool lastIndex = false;
 bool last = false;
 int counter = 1;
-
 
 class Questions extends StatefulWidget {
   const Questions({super.key});
@@ -47,81 +47,104 @@ class _QuestionsState extends State<Questions> {
     final item = dataController.items[appProvider.questionIndex];
 
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: appBar(context),
       backgroundColor: AppColors.backroundColor,
-      body: Padding(
-        padding: AppDimens.p16,
-        child: Column(
-          children: [
-            LanguageTextWidget(languageText: selectedLanguage.toUpperCase()),
-            CountQuestionText(
-              index: appProvider.questionIndex + 1,
-              length: length,
-            ),
-            SizedBox(
-              height: AppDimens.d25,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  for (int i = 0; i < length; i++)
-                    SmallQuestionCounter(
-                      index: appProvider.questionIndex,
-                      i: i,
-                    ),
-                ],
+      body: SingleChildScrollView(
+        controller: controller,
+        scrollDirection: Axis.vertical,
+        child: Padding(
+          padding: AppDimens.p16,
+          child: Column(
+            children: [
+              LanguageTextWidget(languageText: selectedLanguage.toUpperCase()),
+              CountQuestionText(
+                index: appProvider.questionIndex + 1,
+                length: length,
               ),
-            ),
-            last != true ? Savollar(item: item) : const Text(''),
-            appProvider.showLink
-                ? Padding(
-                  padding: AppDimens.p4,
-                  child: OutlinedButton(
-                    onPressed: () => openUrl(item.infoLink),
-                    child:  Text(
-                      "${AppLocalizations.of(context)?.info}",
-                      style: AppTextStyle.infoButton,
-                    ),
-                  ),
-                )
-                : const Padding(
-                  padding: AppDimens.p8,
-                  child: SizedBox(height: AppDimens.d40),
+              SizedBox(
+                height: AppDimens.d25,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    for (int i = 0; i < length; i++)
+                      SmallQuestionCounter(
+                        index: appProvider.questionIndex,
+                        i: i,
+                      ),
+                  ],
                 ),
-
-            // javob
-            ...item.variant.map((v) {
-              return last != true
+              ),
+              last != true ? Savollar(item: item) : const Text(''),
+              appProvider.showLink
                   ? Padding(
-                    padding: AppDimens.p8,
-                    child: SizedBox(
-                      width: AppDimens.d300,
-                      height: AppDimens.d60,
-                      child: OutlinedButton(
-                        style: AppButtonStyle.selectButtonStyle,
-                        onPressed: () {
-                          counter++;
-                          if (counter == length) {
-                            last = true;
-                          }
-                          appProvider.checkAnswerAndIncrementIndex(
-                            dataController
-                                .items[appProvider.questionIndex]
-                                .variant,
-                            dataController
-                                .items[appProvider.questionIndex]
-                                .correctAnswer,
-                            v,
-                          );
-                        },
-                        child: Text(v, style: AppTextStyle.questionsText),
+                    padding: AppDimens.p4,
+                    child: OutlinedButton(
+                      onPressed: () => openUrl(item.infoLink),
+                      child: Text(
+                        "${AppLocalizations.of(context)?.info}",
+                        style: AppTextStyle.infoButton,
                       ),
                     ),
                   )
-                  : const Text('');
-            }),
-            AppDimens.h30,
-            const ResultPageButton(),
-          ],
+                  : const Padding(
+                    padding: AppDimens.p8,
+                    child: SizedBox(height: AppDimens.d40),
+                  ),
+
+              // javob
+              // Sizning kodingizda faqat button qismini o'zgartiring:
+              ...item.variant.map((v) {
+                return last != true
+                    ? Padding(
+                      padding: AppDimens.p8,
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(
+                          minWidth: AppDimens.d300,
+                          maxWidth: AppDimens.d300,
+                          minHeight: 90,
+                          maxHeight: 100, // maksimal balandlik
+                        ),
+                        child: OutlinedButton(
+                          style: AppButtonStyle.selectButtonStyle.copyWith(
+                            padding: MaterialStateProperty.all(
+                              const EdgeInsets.symmetric(
+                                vertical: 12.0,
+                                horizontal: 16.0,
+                              ),
+                            ),
+                          ),
+                          onPressed: () {
+                            counter++;
+                            if (counter == length) {
+                              last = true;
+                            }
+                            appProvider.checkAnswerAndIncrementIndex(
+                              dataController
+                                  .items[appProvider.questionIndex]
+                                  .variant,
+                              dataController
+                                  .items[appProvider.questionIndex]
+                                  .correctAnswer,
+                              v,
+                            );
+                          },
+                          child: Text(
+                            v,
+                            style: AppTextStyle.questionsText,
+                            textAlign: TextAlign.center,
+                            maxLines: 4,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ),
+                    )
+                    : const Text('');
+              }),
+              const ResultPageButton(),
+              AppDimens.h20,
+            ],
+          ),
         ),
       ),
     );

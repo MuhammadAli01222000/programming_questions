@@ -7,22 +7,26 @@ class NoInternetPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backroundColor,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              "Internet ulanmagan",
-              style: AppTextStyle.programmingLanguageText,
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text("Qayta urinib ko‘rish"),
-            ),
-          ],
+      body: Padding(
+        padding: AppDimens.p25,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+               Text(
+                "${AppLocalizations.of(context)?.networkError}",
+                style: AppTextStyle.networkError,
+
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  context.pop();
+                },
+                child:  Text("${AppLocalizations.of(context)?.reload}"),
+              ),
+            ],
+          ),
         ),
       ),
     );

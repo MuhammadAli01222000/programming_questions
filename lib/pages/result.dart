@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:programming_questions/core/theme/theme.dart';
 import 'package:programming_questions/pages/with_network/question_genarate_ai.dart';
 
+import '../core/widgets/glass.dart';
 import '../core/widgets/glass_card.dart';
 
 class ResultScreen extends StatelessWidget {
@@ -42,49 +43,28 @@ class ResultScreen extends StatelessWidget {
                   color: Colors.red,
                 ),
                 const SizedBox(height: 20),
-
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder:
-                            (BuildContext context) =>
-                                const QuestionGenerateAi(),
-                      ),
-                    );
+                    appProvider.correctAnswers = 0;
+                    appProvider.wrong = 0;
+                    context.pushNamed(AppRouteName.questionsWithAi);
                   },
-                  child: GestureDetector(
-                    onTap: () {
-                      appProvider.correctAnswers = 0;
-                      appProvider.wrong = 0;
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder:
-                              (BuildContext context) =>
-                                  const QuestionGenerateAi(),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [Colors.blue,Colors.red, ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.topRight,
-                          tileMode: TileMode.repeated,
-                        ),
-                        borderRadius: BorderRadius.circular(18),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [Colors.blue,Colors.red, ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.topRight,
+                        tileMode: TileMode.repeated,
                       ),
-                      width: 350,
-                      height: 50,
-                      child:  Center(
-                        child: Text(
-                          "${AppLocalizations.of(context)?.withAi}",
-                          style: AppTextStyle.languageText,
-                        ),
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    width: 395,
+                    height: 50,
+                    child:  Center(
+                      child: Text(
+                        "${AppLocalizations.of(context)?.withAi}",
+                        style: AppTextStyle.languageText,
                       ),
                     ),
                   ),
@@ -104,40 +84,6 @@ class ResultScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class GlassCard extends StatelessWidget {
-  final String text;
-
-  const GlassCard({super.key, required this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(25),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-        child: Container(
-          width: double.infinity,
-          height: 150,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(25),
-            border: Border.all(color: Colors.white.withOpacity(0.2)),
-          ),
-          child: Text(
-            text,
-            style: GoogleFonts.poppins(
-              fontSize: 26,
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
             ),
           ),
         ),

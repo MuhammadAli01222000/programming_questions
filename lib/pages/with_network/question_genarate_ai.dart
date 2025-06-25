@@ -19,8 +19,8 @@ class _QuestionGenerateAiState extends State<QuestionGenerateAi> {
   late Future<List<QuestionModel>> _futureQuestions;
   int count = 0;
   final controller = ScrollController();
-
   bool last = false;
+
   @override
   void initState() {
     super.initState();
@@ -48,6 +48,16 @@ class _QuestionGenerateAiState extends State<QuestionGenerateAi> {
     }
 
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+
+      // floatingActionButton: const Column(
+      //   children: [
+      //     Spacer(),
+      //
+      //     SizedBox(height: 20),
+      //   ],
+      // ),
+
       appBar: appBar(context),
       backgroundColor: AppColors.backroundColor,
       body: SingleChildScrollView(
@@ -68,7 +78,6 @@ class _QuestionGenerateAiState extends State<QuestionGenerateAi> {
               else if (snapshot.hasError) {
                 return Center(child: Text(" Error : ${snapshot.error}"));
               }
-              // Ma'lumotlar mavjud bo‘lsa
               else if (snapshot.hasData) {
                 final result = snapshot.data!;
 
@@ -99,12 +108,6 @@ class _QuestionGenerateAiState extends State<QuestionGenerateAi> {
                           ],
                         ),
                       ),
-                      last != true
-                          ? Text(
-                            result[count].question,
-                            style: AppTextStyle.questionsText,
-                          )
-                          : const Text(''),
 
                       appProvider.showLink
                           ? Padding(
@@ -121,43 +124,43 @@ class _QuestionGenerateAiState extends State<QuestionGenerateAi> {
                       ...result[count].variant.map((v) {
                         return last != true
                             ? Padding(
-                              padding: AppDimens.p8,
-                              child: SizedBox(
-                                width: AppDimens.d300,
-                                height: AppDimens.d60,
-                                child: OutlinedButton(
-                                  style: AppButtonStyle.selectButtonStyle,
-                                  onPressed: () {
-                                    setState(() {
-                                      // check answer
-                                      setState(() {
-                                        if (v == result[count].correctAnswer) {
-                                          appProvider.correctAnswers++;
-                                        } else {
-                                          appProvider.wrong++;
-                                        }
-                                        count++;
-
-                                        if (count >= result.length) {
-                                          last = true;
-
-                                          count = result.length - 1;
-                                        }
-                                      });
-                                    });
-                                  },
-                                  child: Text(
-                                    v,
-                                    style: AppTextStyle.questionsText,
-                                  ),
+                          padding: AppDimens.p8,
+                          child: SizedBox(
+                            width: 300,
+                            height: 100, // Uzun matn bo'lsa balandroq
+                            child: OutlinedButton(
+                              style: AppButtonStyle.selectButtonStyle,
+                              onPressed: () {
+                                setState(() {
+                                  if (v == result[count].correctAnswer) {
+                                    appProvider.correctAnswers++;
+                                  } else {
+                                    appProvider.wrong++;
+                                  }
+                                  count++;
+                                  if (count >= result.length) {
+                                    last = true;
+                                    count = result.length - 1;
+                                  }
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  v,
+                                  style: AppTextStyle.questionsText,
+                                  textAlign: TextAlign.center,
+                                  maxLines: 4,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                            )
+                            ),
+                          ),
+                        )
                             : const SizedBox();
                       }).toList(),
+                      const Align(alignment: Alignment.bottomCenter, child: ResultPageButton()),
 
-                      const SizedBox(height: 74),
-                      const ResultPageButton(),
                     ],
                   ),
                 );

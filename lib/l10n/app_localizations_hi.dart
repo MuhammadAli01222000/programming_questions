@@ -9,7 +9,7 @@ class AppLocalizationsHi extends AppLocalizations {
   AppLocalizationsHi([String locale = 'hi']) : super(locale);
 
   @override
-  String get error => 'Error';
+  String get error => 'एक त्रुटि हुई';
 
   @override
   String get question => 'प्रश्न';
@@ -18,16 +18,16 @@ class AppLocalizationsHi extends AppLocalizations {
   String get quiz => 'प्रश्नोत्तरी';
 
   @override
-  String get python => 'Python';
+  String get python => 'पाइथन';
 
   @override
-  String get java => 'Java';
+  String get java => 'जावा';
 
   @override
-  String get javaScript => 'JavaScript';
+  String get javaScript => 'जावास्क्रिप्ट';
 
   @override
-  String get dart => 'Dart';
+  String get dart => 'डार्ट';
 
   @override
   String get selectLanguage => 'प्रोग्रामिंग भाषा चुनें';
@@ -36,25 +36,25 @@ class AppLocalizationsHi extends AppLocalizations {
   String get selectLevel => 'अपना स्तर चुनें';
 
   @override
-  String get levelJunior => 'Junior';
+  String get levelJunior => 'जूनियर';
 
   @override
-  String get levelMiddle => 'Middle';
+  String get levelMiddle => 'मिडिल';
 
   @override
-  String get levelSenior => 'Senior';
+  String get levelSenior => 'सीनियर';
 
   @override
-  String get infoDart => 'Dart एक आधुनिक तेज़ भाषा है जो Flutter विकास के लिए उपयोग की जाती है।';
+  String get infoDart => 'Dart — Flutter विकास के लिए एक आधुनिक और तेज़ प्रोग्रामिंग भाषा है।';
 
   @override
-  String get infoJava => 'Java दुनिया की सबसे अधिक उपयोग की जाने वाली प्रोग्रामिंग भाषाओं में से एक है।';
+  String get infoJava => 'Java — दुनिया की सबसे अधिक उपयोग की जाने वाली प्रोग्रामिंग भाषाओं में से एक है।';
 
   @override
-  String get infoJavaScript => 'JavaScript is an interactive programming language used for the web.';
+  String get infoJavaScript => 'JavaScript — वेब के लिए एक इंटरएक्टिव प्रोग्रामिंग भाषा है।';
 
   @override
-  String get infoPython => 'Python डेटा विश्लेषण, एआई, रोबोटिक्स आदि में व्यापक रूप से उपयोग होता है।';
+  String get infoPython => 'Python — डेटा विश्लेषण, आर्टिफिशियल इंटेलिजेंस और रोबोटिक्स के क्षेत्रों में व्यापक रूप से उपयोग की जाती है।';
 
   @override
   String get resultPage => 'परिणाम देखें';
@@ -69,8 +69,14 @@ class AppLocalizationsHi extends AppLocalizations {
   String get result => 'आपका परिणाम';
 
   @override
-  String get info => 'और पढ़ने के लिए';
+  String get info => 'और पढ़ें';
 
   @override
-  String get withAi => 'एआई के साथ प्रश्न';
+  String get withAi => 'AI द्वारा उत्पन्न प्रश्न';
+
+  @override
+  String get networkError => 'ऐसा लगता है कि आपके पास इंटरनेट कनेक्शन नहीं है, कृपया नेटवर्क जांचें।';
+
+  @override
+  String get reload => 'इंटरनेट कनेक्शन जांचें';
 }

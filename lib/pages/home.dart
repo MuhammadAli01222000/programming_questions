@@ -127,13 +127,7 @@ class _HomeState extends State<Home> {
                               levelProgrammer,
                             );
                             context.pushNamed(AppRouteName.question);
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder:
-                            //         (BuildContext context) => const Questions(),
-                            //   ),
-                            // );
+
                           },
                         ),
                       ),

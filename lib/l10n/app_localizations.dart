@@ -232,6 +232,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Questions generated with AI'**
   String get withAi;
+
+  /// No description provided for @networkError.
+  ///
+  /// In en, this message translates to:
+  /// **'It seems you don\'t have an internet connection, please check your network.'**
+  String get networkError;
+
+  /// No description provided for @reload.
+  ///
+  /// In en, this message translates to:
+  /// **'Check Internet Connection'**
+  String get reload;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

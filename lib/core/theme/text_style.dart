@@ -19,6 +19,9 @@ sealed class AppTextStyle {
     fontSize: AppDimens.d50,
     fontWeight: FontWeight.bold,
   );
+  static const networkError=TextStyle(
+    fontSize: AppDimens.d20,color: AppColors.white,fontWeight: FontWeight.w400
+  );
   static const programmingLanguageText = TextStyle(
     fontSize: AppDimens.d20,
     fontWeight: FontWeight.w400,
@@ -36,7 +39,7 @@ sealed class AppTextStyle {
   );
 
   static const languageText = TextStyle(
-    fontSize: 22,
+    fontSize: 19,
 
     fontWeight: FontWeight.bold,
     color: AppColors.white,

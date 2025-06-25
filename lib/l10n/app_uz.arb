@@ -1,7 +1,6 @@
 {
   "@@locale": "uz",
-  "error": "Error",
-
+  "error": "Xatolik yuz berdi",
   "question": "Savol",
   "quiz": "Viktorina",
   "python": "Python",
@@ -23,5 +22,7 @@
   "wrong": "Noto‘g‘ri",
   "result": "Sizning natijangiz",
   "info": "Batafsil o‘qish uchun",
-  "withAi": "AI orqali savollar"
+  "withAi": "Sun'iy inteletk orqali savollar",
+  "networkError": "Sizda internet mavjud emasga o'xshaydi ,iltimos internet mavjudligini tekshiring",
+  "reload": "Internetni tekshirish"
 }

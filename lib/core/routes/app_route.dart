@@ -3,6 +3,7 @@ import 'package:programming_questions/pages/result.dart';
 import 'package:programming_questions/pages/splash_screen.dart';
 
 import '../../pages/error_page.dart';
+import '../../pages/with_network/question_genarate_ai.dart';
 
 sealed class AppRoutes{
   static final routes=GoRouter(
@@ -15,7 +16,7 @@ sealed class AppRoutes{
         GoRoute(path: AppRoutePath.error,name: AppRouteName.error,builder: (context,state)=> const NoInternetPage()),
         GoRoute(path: AppRoutePath.result,name: AppRouteName.result,builder: (context,state)=> const ResultScreen()),
         GoRoute(path: AppRoutePath.question,name: AppRouteName.question,builder: (context,state)=> const Questions()),
-        GoRoute(path: AppRoutePath.questionsWithAi,name: AppRouteName.questionsWithAi,builder: (context,state)=> const Questions()),
+        GoRoute(path: AppRoutePath.questionsWithAi,name: AppRouteName.questionsWithAi,builder: (context,state)=> const QuestionGenerateAi()),
     GoRoute(
       path: AppRoutePath.home,
       name: AppRouteName.home,

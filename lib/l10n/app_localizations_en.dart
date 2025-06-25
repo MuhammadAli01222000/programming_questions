@@ -73,4 +73,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get withAi => 'Questions generated with AI';
+
+  @override
+  String get networkError => 'It seems you don\'t have an internet connection, please check your network.';
+
+  @override
+  String get reload => 'Check Internet Connection';
 }

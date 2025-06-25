@@ -9,7 +9,7 @@ class AppLocalizationsRu extends AppLocalizations {
   AppLocalizationsRu([String locale = 'ru']) : super(locale);
 
   @override
-  String get error => 'Error';
+  String get error => 'Произошла ошибка';
 
   @override
   String get question => 'Вопрос';
@@ -33,7 +33,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get selectLanguage => 'Выберите язык программирования';
 
   @override
-  String get selectLevel => 'Выберите свой уровень';
+  String get selectLevel => 'Выберите ваш уровень';
 
   @override
   String get levelJunior => 'Junior';
@@ -45,32 +45,38 @@ class AppLocalizationsRu extends AppLocalizations {
   String get levelSenior => 'Senior';
 
   @override
-  String get infoDart => 'Dart — это современный быстрый язык для разработки на Flutter.';
+  String get infoDart => 'Dart — современный и быстрый язык программирования для разработки на Flutter.';
 
   @override
   String get infoJava => 'Java — один из самых популярных языков программирования в мире.';
 
   @override
-  String get infoJavaScript => 'JavaScript is an interactive programming language used for the web.';
+  String get infoJavaScript => 'JavaScript — интерактивный язык программирования для веба.';
 
   @override
-  String get infoPython => 'Python широко используется в аналитике данных, ИИ, робототехнике и др.';
+  String get infoPython => 'Python широко используется для анализа данных, искусственного интеллекта и робототехники.';
 
   @override
   String get resultPage => 'Посмотреть результаты';
 
   @override
-  String get correct => 'Правильный ';
+  String get correct => 'Правильно';
 
   @override
-  String get wrong => 'Неправильно ';
+  String get wrong => 'Неправильно';
 
   @override
   String get result => 'Ваш результат';
 
   @override
-  String get info => 'Подробнее читайте';
+  String get info => 'Читать подробнее';
 
   @override
-  String get withAi => 'Вопросы с ИИ';
+  String get withAi => 'Вопросы, сгенерированные ИИ';
+
+  @override
+  String get networkError => 'Похоже, у вас нет подключения к интернету, пожалуйста, проверьте сеть.';
+
+  @override
+  String get reload => 'Проверить подключение к интернету';
 }

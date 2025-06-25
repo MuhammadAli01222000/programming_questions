@@ -9,7 +9,7 @@ class AppLocalizationsUz extends AppLocalizations {
   AppLocalizationsUz([String locale = 'uz']) : super(locale);
 
   @override
-  String get error => 'Error';
+  String get error => 'Xatolik yuz berdi';
 
   @override
   String get question => 'Savol';
@@ -72,5 +72,11 @@ class AppLocalizationsUz extends AppLocalizations {
   String get info => 'Batafsil o‘qish uchun';
 
   @override
-  String get withAi => 'AI orqali savollar';
+  String get withAi => 'Sun\'iy inteletk orqali savollar';
+
+  @override
+  String get networkError => 'Sizda internet mavjud emasga o\'xshaydi ,iltimos internet mavjudligini tekshiring';
+
+  @override
+  String get reload => 'Internetni tekshirish';
 }
