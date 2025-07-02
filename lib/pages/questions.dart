@@ -1,5 +1,6 @@
 import 'package:programming_questions/core/theme/theme.dart';
 import 'package:programming_questions/core/widgets/app_bar.dart';
+import 'package:programming_questions/pages/result.dart';
 
 bool lastIndex = false;
 bool last = false;
@@ -89,11 +90,8 @@ class _QuestionsState extends State<Questions> {
                   )
                   : const Padding(
                     padding: AppDimens.p8,
-                    child: SizedBox(height: AppDimens.d40),
+                    child: SizedBox(height: AppDimens.d16),
                   ),
-
-              // javob
-              // Sizning kodingizda faqat button qismini o'zgartiring:
               ...item.variant.map((v) {
                 return last != true
                     ? Padding(
@@ -103,7 +101,7 @@ class _QuestionsState extends State<Questions> {
                           minWidth: AppDimens.d300,
                           maxWidth: AppDimens.d300,
                           minHeight: 90,
-                          maxHeight: 100, // maksimal balandlik
+                          maxHeight: 100,
                         ),
                         child: OutlinedButton(
                           style: AppButtonStyle.selectButtonStyle.copyWith(
@@ -116,6 +114,7 @@ class _QuestionsState extends State<Questions> {
                           ),
                           onPressed: () {
                             counter++;
+                            listCorrect.add(item);
                             if (counter == length) {
                               last = true;
                             }
@@ -127,6 +126,7 @@ class _QuestionsState extends State<Questions> {
                                   .items[appProvider.questionIndex]
                                   .correctAnswer,
                               v,
+                              v,item,
                             );
                           },
                           child: Text(

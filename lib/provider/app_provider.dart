@@ -1,4 +1,6 @@
 
+import 'package:programming_questions/pages/result.dart';
+
 import '../core/theme/theme.dart';
 class AppProvider extends ChangeNotifier {
   int questionIndex = 0;
@@ -23,11 +25,16 @@ class AppProvider extends ChangeNotifier {
       List<String> variants,
       String correctAnswer,
       String selectedAnswer,
+      String wrongAnswer,
+      QuestionModel? questionModel,
       ) {
     if (selectedAnswer == correctAnswer) {
       correctAnswers++;
+      listCorrect.add(correctAnswer);
     } else {
       wrong++;
+      listWrong.add(questionModel?? null);
+      print("Wrong $wrongAnswer");
     }
     questionIndex++;
     notifyListeners();
@@ -46,6 +53,8 @@ class AppProvider extends ChangeNotifier {
     wrong = 0;
     dataController.clear();
     showLink = false;
+    listWrong=[];
+    listCorrect=[];
     notifyListeners();
   }
 }

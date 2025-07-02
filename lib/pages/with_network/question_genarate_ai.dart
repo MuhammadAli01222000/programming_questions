@@ -2,6 +2,7 @@ import 'package:programming_questions/core/widgets/app_bar.dart';
 import 'package:programming_questions/core/theme/theme.dart';
 import 'package:programming_questions/pages/error_page.dart';
 import 'package:programming_questions/pages/home.dart';
+import 'package:programming_questions/pages/result.dart';
 import 'package:programming_questions/pages/with_network/network_provider.dart';
 import '../../core/widgets/app_button.dart';
 import '../../model/question_model.dart';
@@ -49,15 +50,6 @@ class _QuestionGenerateAiState extends State<QuestionGenerateAi> {
 
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-
-      // floatingActionButton: const Column(
-      //   children: [
-      //     Spacer(),
-      //
-      //     SizedBox(height: 20),
-      //   ],
-      // ),
-
       appBar: appBar(context),
       backgroundColor: AppColors.backroundColor,
       body: SingleChildScrollView(
@@ -108,6 +100,7 @@ class _QuestionGenerateAiState extends State<QuestionGenerateAi> {
                           ],
                         ),
                       ),
+                      Text("${result[count].question}",style: AppTextStyle.questionsText,),
 
                       appProvider.showLink
                           ? Padding(
@@ -120,7 +113,7 @@ class _QuestionGenerateAiState extends State<QuestionGenerateAi> {
                               ),
                             ),
                           )
-                          : const SizedBox(height: 56),
+                          : const SizedBox(height: AppDimens.d16),
                       ...result[count].variant.map((v) {
                         return last != true
                             ? Padding(
@@ -134,8 +127,10 @@ class _QuestionGenerateAiState extends State<QuestionGenerateAi> {
                                 setState(() {
                                   if (v == result[count].correctAnswer) {
                                     appProvider.correctAnswers++;
+                                    listCorrect.add(result[count]);
                                   } else {
                                     appProvider.wrong++;
+                                    listWrong.add(result[count]);
                                   }
                                   count++;
                                   if (count >= result.length) {
@@ -160,7 +155,7 @@ class _QuestionGenerateAiState extends State<QuestionGenerateAi> {
                             : const SizedBox();
                       }).toList(),
                       const Align(alignment: Alignment.bottomCenter, child: ResultPageButton()),
-
+AppDimens.h20,
                     ],
                   ),
                 );

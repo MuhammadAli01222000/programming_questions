@@ -30,7 +30,7 @@ class NetworkStatus with ChangeNotifier {
 
   Future<List<QuestionModel>> generateContentWithGemini() async {
 
-print(l10n);
+print("l10n $l10n");
     final String myApiKey = apiKey;
     final url =
         'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=$myApiKey';

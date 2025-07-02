@@ -128,6 +128,7 @@ class _SplashPageState extends State<SplashPage> {
               icon: AppIcons.uzb,
               onPressed: () {
                 languageController.changeLocal(const Locale("uz"));
+                l10n="Uzbek";
                 context.pop();
               },
             ),
@@ -138,6 +139,8 @@ class _SplashPageState extends State<SplashPage> {
               icon: AppIcons.ingliz,
               onPressed: () {
                 languageController.changeLocal(const Locale("en"));
+                l10n="English";
+
                 context.pop();
               },
             ),
@@ -147,6 +150,8 @@ class _SplashPageState extends State<SplashPage> {
             leading: IconButton(
               icon: AppIcons.rus,
               onPressed: () {
+                l10n="Rus";
+
                 languageController.changeLocal(LanguageController.ru);
                 context.pop();
               },

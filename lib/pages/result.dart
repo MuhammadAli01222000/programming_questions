@@ -4,16 +4,38 @@ import 'package:programming_questions/pages/with_network/question_genarate_ai.da
 
 import '../core/widgets/glass.dart';
 import '../core/widgets/glass_card.dart';
-
-class ResultScreen extends StatelessWidget {
+List listCorrect=[];
+List <QuestionModel?>listWrong=[];
+class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key});
 
+  @override
+  State<ResultScreen> createState() => _ResultScreenState();
+}
+
+class _ResultScreenState extends State<ResultScreen> {
+final _wrongListController=ScrollController();
+final _correctListController=ScrollController();
+@override
+  void dispose() {
+    super.dispose();
+    _wrongListController.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     final appProvider = Provider.of<AppProvider>(context);
     int result = appProvider.correctAnswers * 5;
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurpleAccent,
+        child: const Icon(Icons.home, color: AppColors.white),
+        onPressed: () {
+          /// screen da clear qilish
+          appProvider.reset();
+          context.goNamed(AppRouteName.splash);
+        },
+      ),
       backgroundColor: AppColors.backroundColor,
       extendBodyBehindAppBar: true,
       body: Container(
@@ -69,20 +91,37 @@ class ResultScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Spacer(),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: FloatingActionButton(
-                    backgroundColor: Colors.deepPurpleAccent,
-                    child: const Icon(Icons.home, color: AppColors.white),
-                    onPressed: () {
-                      /// screen da clear qilish
-                      appProvider.reset();
-
-                    context.goNamed(AppRouteName.splash);
-                    },
+                Expanded(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AppDimens.h20,
+                            const Text("❌ Wrong answers:", style: TextStyle(color: Colors.red, fontSize: 16)),
+                            const SizedBox(height: 8),
+                            Expanded(
+                              child: ListView.builder(
+                                controller: _wrongListController,
+                                itemCount: listWrong.length,
+                                itemBuilder: (context, index) {
+                                  return Text(
+                                    '${index + 1}. ${listWrong[index]?.question}',
+                                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 16), // Space between columns
+                    ],
                   ),
                 ),
+
               ],
             ),
           ),
